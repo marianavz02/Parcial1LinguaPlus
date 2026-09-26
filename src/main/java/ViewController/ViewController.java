@@ -1,4 +1,95 @@
-package ViewController;
+<?xml version="1.0" encoding="UTF-8"?>
 
-public class ViewController {
-}
+        <?import javafx.geometry.Insets?>
+        <?import javafx.scene.control.*?>
+        <?import javafx.scene.layout.*?>
+
+<TabPane xmlns="http://javafx.com/javafx"
+xmlns:fx="http://javafx.com/fxml"
+fx:controller="ViewController.ViewController"
+tabClosingPolicy="UNAVAILABLE">
+
+    <Tab text="Estudiantes">
+        <VBox spacing="10">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <Label text="Registrar estudiante" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+            <GridPane hgap="10" vgap="8">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints minWidth="220"/>
+                </columnConstraints>
+                <Label text="Identificación:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtIdEstudiante" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Nombre completo:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNombreEstudiante" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Teléfono:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtTelefonoEstudiante" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Correo:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtCorreoEstudiante" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label text="Edad:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtEdadEstudiante" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </GridPane>
+            <HBox spacing="10">
+                <Button text="Registrar estudiante" onAction="#registrarEstudiante"/>
+            </HBox>
+            <Label fx:id="lblEstadoEstudiante" wrapText="true" style="-fx-text-fill: #b00020;"/>
+            <Separator/>
+            <Label text="Estudiantes registrados" style="-fx-font-weight: bold;"/>
+            <ListView fx:id="listEstudiantes" prefHeight="180"/>
+        </VBox>
+    </Tab>
+
+    <Tab text="Matrícula">
+        <VBox spacing="10">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <Label text="Nueva matrícula" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+            <GridPane hgap="10" vgap="8">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints minWidth="260"/>
+                </columnConstraints>
+                <Label text="Estudiante:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cbEstudiante" GridPane.rowIndex="0" GridPane.columnIndex="1" maxWidth="Infinity"/>
+                <Label text="Programa:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cbPrograma" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"/>
+                <Label text="Fecha de inicio:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dpFechaInicio" GridPane.rowIndex="2" GridPane.columnIndex="1" maxWidth="Infinity"/>
+                <Label text="Docente tutor (opcional):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cbDocenteTutor" GridPane.rowIndex="3" GridPane.columnIndex="1" maxWidth="Infinity"/>
+                <Label text="Descuento (0.0 a 0.30):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtDescuento" GridPane.rowIndex="4" GridPane.columnIndex="1" text="0.0"/>
+                <Label text="Observaciones:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtObservaciones" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+            <Label text="Servicios adicionales (Ctrl/Click para varios):"/>
+            <ListView fx:id="listServicios" prefHeight="80"/>
+            <HBox spacing="10">
+                <Button text="Registrar matrícula" onAction="#registrarMatricula"/>
+                <ComboBox fx:id="cbFormatoComprobante"/>
+                <Button text="Generar comprobante" onAction="#generarComprobante"/>
+            </HBox>
+            <Label fx:id="lblEstadoMatricula" wrapText="true" style="-fx-text-fill: #b00020;"/>
+            <TextArea fx:id="txtComprobante" editable="false" prefHeight="140" style="-fx-font-family: monospace;"/>
+        </VBox>
+    </Tab>
+
+    <Tab text="Consultas">
+        <VBox spacing="15">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <Label text="Buscar estudiante por teléfono / número perfecto" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+            <HBox spacing="10">
+                <TextField fx:id="txtTelefonoConsulta" promptText="Número de teléfono"/>
+                <Button text="Buscar" onAction="#buscarPorTelefono"/>
+            </HBox>
+            <Label fx:id="lblResultadoTelefono" wrapText="true"/>
+            <Separator/>
+            <Label text="Ingresos por periodo académico" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+            <HBox spacing="10">
+                <ComboBox fx:id="cbPeriodo" maxWidth="300"/>
+                <Button text="Calcular ingresos" onAction="#calcularIngresos"/>
+            </HBox>
+            <Label fx:id="lblIngresos" wrapText="true"/>
+        </VBox>
+    </Tab>
+
+</TabPane>
